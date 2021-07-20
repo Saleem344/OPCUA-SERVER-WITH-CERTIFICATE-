@@ -9,7 +9,7 @@
   "author": "Saleem",
   "license": "ISC",
   "dependencies": {
-    "node-opcua": "^2.26.0",
+    "node-opcua": "^2.46.0",
     "node-opcua-pki": "^2.2.2"
   }
 }

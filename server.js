@@ -79,6 +79,7 @@ OPCUAServer.MAX_SUBSCRIPTION = maxAllowedSubscriptionNumber;
 
 
 const os = require('os');
+const { Session } = require("inspector");
 
 async function getIpAddresses() {
 
@@ -268,6 +269,56 @@ const paths = envPaths(productUri);
       variable0.setValueFromSource(new Variant({ dataType: DataType.Double, value: 1000.0 + fluctuation }));
     }, 10);
 
+    const variable1 = namespace.addVariable({
+      organizedBy: myDevices,
+      browseName: "VoltageA",
+      nodeId: "ns=1;s=VoltageA",
+      dataType: "Double",
+      value: new Variant({ dataType: DataType.Double, value: 22.0 })
+    });
+    
+
+    setInterval(function() {
+      const fluctuation = Math.random() * 100 - 50;
+      variable1.setValueFromSource(new Variant({ dataType: DataType.Double, value: 22.0 + fluctuation }));
+    }, 10);
+    const variable2 = namespace.addVariable({
+      organizedBy: myDevices,
+      browseName: "VoltageB",
+      nodeId: "ns=1;s=VoltageB",
+      dataType: "Double",
+      value: new Variant({ dataType: DataType.Double, value: 25.0 })
+    });
+
+    setInterval(function() {
+      const fluctuation = Math.random() * 100 - 50;
+      variable2.setValueFromSource(new Variant({ dataType: DataType.Double, value: 25.0 + fluctuation }));
+    }, 10);
+    const variable3 = namespace.addVariable({
+      organizedBy: myDevices,
+      browseName: "VoltageC",
+      nodeId: "ns=1;s=VoltageC",
+      dataType: "Double",
+      value: new Variant({ dataType: DataType.Double, value: 23.0 })
+    });
+
+    setInterval(function() {
+      const fluctuation = Math.random() * 100 - 50;
+      variable3.setValueFromSource(new Variant({ dataType: DataType.Double, value: 23.0 + fluctuation }));
+    }, 10);
+    const variable4 = namespace.addVariable({
+      organizedBy: myDevices,
+      browseName: "Current",
+      nodeId: "ns=1;s=Current",
+      dataType: "Double",
+      value: new Variant({ dataType: DataType.Double, value: 250.0 })
+    });
+
+    setInterval(function() {
+      const fluctuation = Math.random() * 100 - 50;
+      variable4.setValueFromSource(new Variant({ dataType: DataType.Double, value: 250.0 + fluctuation }));
+    }, 10);
+
 
     /*
      * variation 1:
@@ -310,6 +361,7 @@ const paths = envPaths(productUri);
     });
 
 
+    
     /*
      * variation 2:
      * ------------
@@ -411,6 +463,7 @@ const paths = envPaths(productUri);
           });
         }
       }
+      
     });
 
     const xyz = namespace.addVariable({
